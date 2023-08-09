@@ -2,7 +2,7 @@
 #![no_std]
 
 pub mod led_0wire;
-use led_0wire::Led0Wire;
+use led_0wire::*;
 
 use panic_rtt_target as _;
 use rtt_target::rtt_init_print;
@@ -26,7 +26,7 @@ fn main() -> ! {
     let delay = Delay::new(board.SYST);
     let mut led_0wire = Led0Wire::new(delay, pin_0wire);
 
-    led_0wire.send_cmd(0x21);
+    led_0wire.send_cmd(Function::Static, Color::Yellow);
 
     loop {
         asm::wfi();

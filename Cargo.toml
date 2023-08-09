@@ -7,6 +7,7 @@ edition = "2021"
 cortex-m-rt = "0.7"
 microbit-v2 = "0.13.0"
 rtt-target = "0.4"
+thiserror-no-std = "2.0.2"
 
 [dependencies.panic-rtt-target]
 version = "0.1"
