@@ -14,8 +14,9 @@ use microbit::{
     board::Board,
     hal::{
         prelude::*,
+        pwm,
         delay::Delay,
-        gpio::{Pin, Level, Output, PushPull},
+        gpio::{self, Pin, Output, PushPull},
         Timer,
     },
 };
@@ -25,9 +26,11 @@ fn main() -> ! {
     // Set up.
     rtt_init_print!();
     let board = Board::take().unwrap();
-    let pin_0wire = board.pins.p0_02.into_push_pull_output(Level::High).degrade();
     let delay = Delay::new(board.SYST);
-    let mut led_0wire = Led0Wire::new(delay, pin_0wire);
+    let pin_pwm = board.pins.p1_02.into_push_pull_output(gpio::Level::High);
+    let pwm = pwm::Pwm::new(board.PWM0);
+    let mut led_0wire = Led0Wire::new(delay, pwm, pin_pwm.degrade());
+
     let mut sleep = Timer::new(board.TIMER0);
     let button_a = board.buttons.button_a.into_floating_input().degrade();
     let button_b = board.buttons.button_b.into_floating_input().degrade();

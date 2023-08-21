@@ -112,25 +112,40 @@ impl TryFrom<u8> for Color {
 }
 
 /// Contains endpoints necessary for LED control.
-pub struct Led0Wire {
+pub struct Led0Wire<T: pwm::Instance> {
     delay: Delay,
-    pin: Pin<Output<PushPull>>,
+    pwm: pwm::Pwm<T>,
 }
 
-impl Led0Wire {
+// Amount of PWM clock counts for PWM output to be low.
+const PWM_DUTY: u16 = 80;
 
+impl<T: pwm::Instance> Led0Wire<T> {
     /// Create a new controller.
-    pub fn new(delay: Delay, pin: Pin<Output<PushPull>>) -> Self {
-        Self { delay, pin }
+    pub fn new(
+        delay: Delay,
+        pwm: pwm::Pwm<T>,
+        pin_pwm: Pin<Output<PushPull>>,
+    ) -> Self {
+        // Set up voltage doubler.
+        pwm
+            .set_output_pin(pwm::Channel::C0, pin_pwm)
+            .set_prescaler(pwm::Prescaler::Div1)
+            .set_counter_mode(pwm::CounterMode::Up)
+            .set_max_duty(2 * PWM_DUTY)
+            .enable();
+        pwm.set_duty_off_common(PWM_DUTY);
+
+        Self { delay, pwm }
     }
 
     /// Send the given command to this controller.
     pub fn send_cmd(&mut self, f: Function, c: Color) {
         // Emits a 200µs low pulse.
-        let mut pulser = |delay: &mut Delay| {
-            self.pin.set_low().unwrap();
+        let pulser = |delay: &mut Delay| {
+            self.pwm.set_duty_off_common(2 * PWM_DUTY);
             delay.delay_us(200u16);
-            self.pin.set_high().unwrap();
+            self.pwm.set_duty_off_common(PWM_DUTY);
         };
 
         // Put a 50ms guard delay between commands, per the
