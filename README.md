@@ -13,6 +13,8 @@ drive the green and blue LEDs in the 0-wire. In (white)
 operation the LED draws about 9mA of current, pulling the
 doubler output down to about 3V.
 
+![Charge pump circuit](0wire-charge-pump.png)
+
 An NMOS switch will be used to provide the 0-wire signal for
 the LED, as the LED supply cannot be toggled quickly enough
 by manipulating the PWM due to capacitor discharge times.
