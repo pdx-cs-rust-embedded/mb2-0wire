@@ -3,7 +3,6 @@
 #![no_main]
 #![no_std]
 
-pub mod led_0wire;
 use led_0wire::*;
 
 use panic_rtt_target as _;
@@ -15,7 +14,7 @@ use microbit::{
     hal::{
         prelude::*,
         delay::Delay,
-        gpio::{Pin, Level, Output, PushPull},
+        gpio::Level,
         Timer,
     },
 };
@@ -44,7 +43,7 @@ fn main() -> ! {
     loop {
         let f = FUNCTIONS[fi];
         rprintln!("{:?}", f);
-        led_0wire.send_cmd(f, Color::Yellow);
+        led_0wire.send_cmd(f, Color::Yellow).unwrap();
         loop {
             match get_buttons() {
                 [false, false] => sleep.delay_ms(100u16),

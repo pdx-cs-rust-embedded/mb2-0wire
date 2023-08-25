@@ -150,15 +150,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "led-0wire"
+version = "0.1.0"
+source = "git+https://github.com/pdx-cs-rust-embedded/led-0wire#95362ab69b29f2adf6847b273b3f3849bac38a7b"
+dependencies = [
+ "embedded-hal",
+ "thiserror-no-std",
+]
+
+[[package]]
 name = "mb2-0wire"
 version = "0.1.0"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
+ "led-0wire",
  "microbit-v2",
  "panic-rtt-target",
  "rtt-target 0.4.0",
- "thiserror-no-std",
 ]
 
 [[package]]

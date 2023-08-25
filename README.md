@@ -2,7 +2,8 @@
 Bart Massey 2023
 
 This crate demos control of a "0Wire" RGB LED controller for
-the MicroBit v2.
+the MicroBit v2. It relies on the `led-0wire` crate for its
+core function.
 
 # License
 
