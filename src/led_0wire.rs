@@ -13,7 +13,7 @@ pub enum Function {
     Static = 0,
     /// Fades from dark to light over 4s, fades from
     /// light to dark over 4s, stays dark.
-    LigherDarker = 1,
+    LighterDarker = 1,
     /// Static color except 0.5s white flash every 4s.
     SlowFlashWhite = 2,
     /// Cycles smoothly between color and dark over 2s period.
@@ -37,7 +37,7 @@ pub struct TryFromFunctionError;
 /// List of all functions.
 pub const FUNCTIONS: [Function; 8] = [
     Static,
-    LigherDarker,
+    LighterDarker,
     SlowFlashWhite,
     Wave,
     SlowFlash,
