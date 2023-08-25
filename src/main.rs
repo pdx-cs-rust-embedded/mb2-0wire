@@ -37,13 +37,12 @@ fn main() -> ! {
         |i| buttons[i].is_low().unwrap(),
     );
 
+    led_0wire.send_cmd(Function::Static, Color::White).unwrap();
+
     // Run the demo.
     let mut fi = 0;
     let nfi = FUNCTIONS.len();
     loop {
-        let f = FUNCTIONS[fi];
-        rprintln!("{:?}", f);
-        led_0wire.send_cmd(f, Color::Yellow).unwrap();
         loop {
             match get_buttons() {
                 [false, false] => sleep.delay_ms(100u16),
@@ -58,12 +57,9 @@ fn main() -> ! {
                 _ => (),
             }
         }
+        let f = FUNCTIONS[fi];
+        rprintln!("{:?}", f);
+        led_0wire.send_cmd(f, Color::Cyan).unwrap();
         sleep.delay_ms(500u16);
-        loop {
-            match get_buttons() {
-                [false, false] => break,
-                _ => sleep.delay_ms(100u16),
-            }
-        }
     }
 }
