@@ -6,18 +6,18 @@ the MicroBit v2.
 
 This version features a partially soft voltage doubler
 circuit. A 100KHz square wave is output on P16 of the MB2
-edge connector. This output is used to drive a [Dickson
-charge pump](https://en.wikipedia.org/wiki/Voltage_doubler#Dickson_charge_pump)
+edge connector. This output is used to drive a [Dickson charge
+pump](https://en.wikipedia.org/wiki/Voltage_doubler#Dickson_charge_pump)
 to provide a voltage around 6.5V open, adequate to fully
 drive the green and blue LEDs in the 0-wire. In (white)
-operation the LED draws about 9mA of current, pulling the
+operation the LED draws about 10mA of current, pulling the
 doubler output down to about 3V.
 
-![Charge pump circuit](0wire-charge-pump.png)
-
-An NMOS switch will be used to provide the 0-wire signal for
+An NMOS switch is used to provide the 0-wire signal for
 the LED, as the LED supply cannot be toggled quickly enough
 by manipulating the PWM due to capacitor discharge times.
+
+![Charge pump circuit](0wire-charge-pump.png)
 
 # License
 
