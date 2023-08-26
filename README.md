@@ -1,9 +1,11 @@
 # mb2-0wire: "0Wire" RGB LED controller for MicroBit v2.
 Bart Massey 2023
 
-This crate demos control of a "0Wire" RGB LED controller for
-the MicroBit v2. It relies on the `led-0wire` crate for its
-core function.
+This branch demos the use of "high drive" on the NRF52833
+pins to supply enough current for the LED. When run, this
+program will leave the LED off for 1 second, on with low
+drive for 1 second, then on with high drive. This will
+result in the LED going from off to orange-yellow to white.
 
 # License
 
