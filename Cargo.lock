@@ -157,6 +157,7 @@ dependencies = [
 [[package]]
 name = "microbit-common"
 version = "0.13.0"
+source = "git+https://github.com/BartMassey-upstream/microbit#4eb7a7e945533519f9d256eb3d43153f061857de"
 dependencies = [
  "embedded-hal",
  "nrf52833-hal",
@@ -166,6 +167,7 @@ dependencies = [
 [[package]]
 name = "microbit-v2"
 version = "0.13.0"
+source = "git+https://github.com/BartMassey-upstream/microbit#4eb7a7e945533519f9d256eb3d43153f061857de"
 dependencies = [
  "microbit-common",
 ]
@@ -188,6 +190,7 @@ checksum = "8d5439c4ad607c3c23abf66de8c8bf57ba8adcd1f129e699851a6e43935d339d"
 [[package]]
 name = "nrf-hal-common"
 version = "0.16.0"
+source = "git+https://github.com/BartMassey-upstream/nrf-hal#300a96010afce18f21e465d9502d4c1744935150"
 dependencies = [
  "cast",
  "cfg-if",
@@ -218,6 +221,7 @@ dependencies = [
 [[package]]
 name = "nrf52833-hal"
 version = "0.16.0"
+source = "git+https://github.com/BartMassey-upstream/nrf-hal#300a96010afce18f21e465d9502d4c1744935150"
 dependencies = [
  "embedded-hal",
  "nrf-hal-common",
